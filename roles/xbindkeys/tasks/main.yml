@@ -1,0 +1,10 @@
+---
+- name: Install xbindkeys
+  package:
+    name: xbindkeys
+    state: latest
+
+- name: Copy .xbindkeys to user home directory
+  copy: src=.xbindkeys dest=~/.xbindkeys
+  become: yes
+  become_user: "{{ username }}"

@@ -1,0 +1,28 @@
+[core]
+	editor = vim
+[alias]
+  unstage = reset HEAD --
+  last = log -1 HEAD
+  last5 = log -5 --oneline --decorate
+  last15 = log -15 --oneline --decorate
+  last30 = log -30 --oneline --decorate
+  logall = log --all --pretty=format:'%C(auto)%h%d %<|(135,trunc)%s %<|(160,trunc)%Cgreen%cr %Cblue%<|(180,trunc)%an %C(dim white)%<|(210,trunc)%ae'
+  files = show --pretty="format:" --name-only -r
+  br = branch -va
+  co = checkout
+  st = status
+  ru = remote update
+  puff = pull --ff-only
+[merge]
+  conflictstyle = diff3
+[color "branch"]
+  current = green reverse
+  local = green
+  remote = yellow
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = cyan
+[user]
+	name = {{ git_username }}
+	email = {{ git_email }}

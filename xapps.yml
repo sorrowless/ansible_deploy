@@ -1,0 +1,15 @@
+---
+- name: Install needed X applications everywhere
+  hosts: local
+  remote_user: root
+  vars_files:
+    - vars/xapps_vars.yml
+
+  pre_tasks:
+    - name: Create user {{ username }} if does not exists
+      user:
+        group: "{{ username }}"
+        name: "{{ username }}"
+
+  roles:
+    - xbindkeys
