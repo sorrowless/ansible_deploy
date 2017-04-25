@@ -1,0 +1,3 @@
+---
+collectd_interval: 15
+collectd_load_plugins: []

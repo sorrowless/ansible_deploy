@@ -1,0 +1,34 @@
+---
+- name: |
+    Install full-fledged monitoring stack based on Prometheus, Graphite and
+    Grafana. Alerting is done via Alertmanager (part of the Prometheus), data
+    exporting to Graphite is done via graphite-bridge.
+  hosts: monitoring
+  remote_user: root
+
+- name: Install collectd into all the nodes
+  hosts: all
+  remote_user: root
+  vars:
+    collectd_interval: 10
+    collectd_load_plugins:
+      - cpu
+      - disk
+      - interface
+      - load
+      - memory
+      - processes
+      - swap
+      - write_graphite
+    graphite_host: graphite.host
+
+  roles:
+    - collectd
+
+  tasks:
+    - name: Configure needed Collectd plugins
+      template:
+        src: roles/collectd/templates/write_graphite.conf
+        dest: /etc/collectd/collectd.conf.d/write_graphite.conf
+      notify:
+        - Restart Collectd
