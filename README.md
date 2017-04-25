@@ -36,6 +36,7 @@ Main playbooks there are:
 
 * dotfiles.yml - sets the dotfiles I use everyday
 * xapps.yml - sets a configs for X apps
+* monitoring.yml - setup collectd to nodes
 
 To apply any of there all you need is just
 

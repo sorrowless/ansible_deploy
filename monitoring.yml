@@ -19,8 +19,17 @@
       - memory
       - processes
       - swap
+      - uptime
+      - users
+      - entropy
       - write_graphite
-    graphite_host: graphite.host
+    graphite_hosts:
+      graphite_host:
+        hostname: localhost
+        port: 2003
+      graphite_exporter_host:
+        hostname: localhost
+        port: 9109
 
   roles:
     - collectd
