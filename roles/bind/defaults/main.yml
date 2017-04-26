@@ -1,0 +1,4 @@
+---
+keys_directory: /var/named/keys
+allow_nets: localnets
+zones: []

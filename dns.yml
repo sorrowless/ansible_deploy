@@ -1,0 +1,19 @@
+---
+- name: Install BIND on DNS server node
+  hosts: dns_server
+  remote_user: root
+  vars:
+    zones:
+      -
+       zone_name: internal.local
+       zone_filename: internal.local.zone
+       primary_dns: dns1
+       primary_dns_ip: 172.16.77.1
+       serial_number: 2017042601
+       refresh_interval: 21600
+       retry_interval: 3600
+       expire_interval: 604800
+       min_ttl: 86400
+
+  roles:
+    - bind

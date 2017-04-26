@@ -1,0 +1,63 @@
+---
+- name: Install ISC Bind
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - bind
+    - bind-tools
+
+- name: Delete old update keys
+  file:
+    name: "{{ keys_directory }}"
+    state: absent
+
+- name: Create needed directories
+  file:
+    name: "{{ keys_directory }}"
+    state: directory
+
+- name: Generate key for updates
+  command: dnssec-keygen -a hmac-md5 -b 256 -n HOST "{{ key_name }}"
+  args:
+    chdir: "{{ keys_directory }}"
+  register: generated_key
+
+- name: Get generated key value
+  command: awk '{print $7}' "{{ generated_key.stdout }}.key"
+  args:
+    chdir: "{{ keys_directory }}"
+  register: generated_key_value
+
+- set_fact:
+    key_value: "{{ generated_key_value.stdout }}"
+
+- name: Configure key usage
+  template:
+    src: ddns_updates.conf
+    dest: "{{ keys_directory }}/ddns_updates.conf"
+
+- name: Configure zones
+  template:
+    src: zone.conf
+    dest: "/var/named/{{ item.zone_filename }}"
+  with_items: "{{ zones }}"
+
+- name: Configure main Bind options
+  template:
+    src: named.conf
+    dest: /etc/named.conf
+
+- name: Set named.conf permissions
+  file:
+    path: /etc/named.conf
+    mode: 0755
+
+- name: Set named directory permissions
+  file:
+    path: /var/named
+    mode: u=rwX,g=rX,o=rX
+    owner: named
+    recurse: yes
+  notify:
+    - Restart Bind
