@@ -1,0 +1,6 @@
+---
+mgmt_dns_domain: internal.local
+mgmt_dns_primary_ip: 172.22.0.1
+mgmt_dns_primary_name: ns1
+mgmt_network: 172.22.0.0
+mgmt_network_cidr: 16

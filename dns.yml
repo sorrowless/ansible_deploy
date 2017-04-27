@@ -1,14 +1,16 @@
 ---
+- include: docker.yml
+
 - name: Install BIND on DNS server node
   hosts: dns_server
   remote_user: root
   vars:
     zones:
       -
-       zone_name: internal.local
-       zone_filename: internal.local.zone
-       primary_dns: dns1
-       primary_dns_ip: 172.16.77.1
+       zone_name: "{{ mgmt_dns_domain }}"
+       zone_filename: "{{ mgmt_dns_domain }}.zone"
+       primary_dns: "{{ mgmt_dns_primary_name }}"
+       primary_dns_ip: "{{ mgmt_dns_primary_ip }}"
        serial_number: 2017042601
        refresh_interval: 21600
        retry_interval: 3600
@@ -17,3 +19,8 @@
 
   roles:
     - bind
+
+- name: Install docker DDNS container to all docker nodes
+  hosts: docker
+  roles:
+    - docker_ddns

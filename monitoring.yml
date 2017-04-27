@@ -1,10 +1,17 @@
 ---
+- include: dns.yml
+
 - name: |
     Install full-fledged monitoring stack based on Prometheus, Graphite and
     Grafana. Alerting is done via Alertmanager (part of the Prometheus), data
     exporting to Graphite is done via graphite-bridge.
   hosts: monitoring
   remote_user: root
+  roles:
+    - graphite
+    - graphite-exporter
+    - grafana
+    - prometheus
 
 - name: Install collectd into all the nodes
   hosts: all
@@ -25,10 +32,10 @@
       - write_graphite
     graphite_hosts:
       graphite_host:
-        hostname: localhost
+        hostname: "graphite.{{ mgmt_dns_domain }}"
         port: 2003
       graphite_exporter_host:
-        hostname: localhost
+        hostname: "graphite-exporter.{{ mgmt_dns_domain }}"
         port: 9109
 
   roles:

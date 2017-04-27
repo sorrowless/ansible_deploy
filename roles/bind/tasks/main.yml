@@ -30,7 +30,7 @@
   register: generated_key_value
 
 - set_fact:
-    key_value: "{{ generated_key_value.stdout }}"
+    dns_key_value: "{{ generated_key_value.stdout }}"
 
 - name: Configure key usage
   template:
