@@ -15,3 +15,9 @@ localhost
 
 [dns_server:vars]
 ansible_connection=local
+
+[monitoring]
+localhost
+
+[monitoring:vars]
+ansible_connection=local

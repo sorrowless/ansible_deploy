@@ -1,0 +1,25 @@
+---
+- name: Create needed directories for Grafana
+  file:
+    dest: /var/graphana/storage
+    state: directory
+    mode: 0755
+
+- name: Start docker Grafana container
+  docker_service:
+    project_name: grafana
+    definition:
+      version: '2'
+      services:
+        grafana:
+          image: "grafana/grafana"
+          ports:
+            - "3000:3000"
+          volumes:
+            - /var/grafana/storage:/var/lib/grafana
+          hostname: "grafana"
+          dns: "{{ mgmt_dns_primary_ip }}"
+      networks:
+        default:
+          external:
+            name: "{{ docker_network_name }}"

@@ -9,9 +9,9 @@
   remote_user: root
   roles:
     - graphite
-    - graphite-exporter
+    - graphite_exporter
     - grafana
-    - prometheus
+    - { name: prometheus, tags: prometheus }
 
 - name: Install collectd into all the nodes
   hosts: all

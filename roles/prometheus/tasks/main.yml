@@ -1,0 +1,36 @@
+---
+- name: Create needed directories for docker-prometheus
+  file:
+    dest: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - /etc/docker/prometheus
+    - /var/prometheus/data
+
+- name: Copy docker Prometheus configuration to host
+  template:
+    src: prometheus.yml
+    dest: /etc/docker/prometheus/prometheus.yml
+    mode: 0755
+
+- name: Start docker Prometheus container
+  docker_service:
+    project_name: prometheus
+    definition:
+      version: '2'
+      services:
+        prometheus:
+          image: "prom/prometheus"
+          ports:
+            - "9090:9090"
+          volumes:
+            - /etc/docker/prometheus/prometheus.yml:/prometheus/prometheus.yml
+            - /var/prometheus/data:/prometheus/data
+          command: -config.file=/prometheus/prometheus.yml -storage.local.retention=336h
+          hostname: "prometheus"
+          dns: "{{ mgmt_dns_primary_ip }}"
+      networks:
+        default:
+          external:
+            name: "{{ docker_network_name }}"
