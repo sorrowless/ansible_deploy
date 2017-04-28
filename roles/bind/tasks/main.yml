@@ -1,11 +1,14 @@
 ---
+- name: Set OS-specific vars
+  include_vars: "{{ item }}"
+  with_first_found:
+    - '{{ ansible_os_family }}.yml'
+
 - name: Install ISC Bind
   package:
     name: "{{ item }}"
     state: latest
-  with_items:
-    - bind
-    - bind-tools
+  with_items: "{{ bind_packages }}"
 
 - name: Delete old update keys
   file:
@@ -46,18 +49,18 @@
 - name: Configure main Bind options
   template:
     src: named.conf
-    dest: /etc/named.conf
+    dest: "{{ bind_config_place }}"
 
 - name: Set named.conf permissions
   file:
-    path: /etc/named.conf
+    path: "{{ bind_config_place }}"
     mode: 0755
 
 - name: Set named directory permissions
   file:
     path: /var/named
     mode: u=rwX,g=rX,o=rX
-    owner: named
+    owner: "{{ bind_user }}"
     recurse: yes
   notify:
     - Restart Bind

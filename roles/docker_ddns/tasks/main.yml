@@ -29,13 +29,14 @@
       version: '2'
       services:
         docker-ddns:
-          image: "mbartsch/docker-ddns"
+          image: "gra2f/docker-ddns"
           volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - /etc/docker/docker-ddns/docker-ddns.json:/ddns/docker-ddns.json
             - /etc/docker/docker-ddns/secrets.json:/ddns/secrets.json
           hostname: "docker-ddns"
           dns: "{{ mgmt_dns_primary_ip }}"
+          command: "-v 1.24"
       networks:
         default:
           external:

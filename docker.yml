@@ -1,15 +1,15 @@
 ---
 - name: Install and configure docker into docker-related hosts
   hosts: docker
+  vars_files:
+    - "vars/{{ ansible_os_family }}.yml"
 
   tasks:
   - name: Install docker packages
     package:
       name: "{{ item }}"
       state: latest
-    with_items:
-      - docker
-      - python-docker
+    with_items: "{{ docker_packages }}"
 
   - name: Configure network ranges for docker hosts
     docker_network:
