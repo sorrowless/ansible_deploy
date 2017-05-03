@@ -1,0 +1,7 @@
+ALERT TooLowMemory
+  IF graphite_events_memory{metric="memory-free"} < 200000000
+  FOR 10m
+  ANNOTATIONS {
+    summary = "Instance {{ $labels.host }} memory level too low",
+    description = "{{ $labels.host }} of job {{ $labels.job }} has less then 200 Mb of free RAM for a 10 minutes",
+  }

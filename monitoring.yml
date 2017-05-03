@@ -7,10 +7,13 @@
     exporting to Graphite is done via graphite-bridge.
   hosts: monitoring
   remote_user: root
+  vars:
+    alertmanager_host: "alertmanager.{{ mgmt_dns_domain }}"
   roles:
     - graphite
     - graphite_exporter
     - grafana
+    - { name: alertmanager, tags: alertmanager }
     - { name: prometheus, tags: prometheus }
 
 - name: Install collectd into all the nodes

@@ -5,7 +5,7 @@ localhost
 ansible_connection=local
 
 [docker]
-localhost docker_network_name=internal.local docker_network_subnet=172.22.0.0/16 docker_network_gateway=172.22.0.1 docker_network_iprange=172.22.101.0/24
+localhost docker_network_name=internal.local docker_network_subnet=172.22.101.0/24 docker_network_gateway=172.22.101.1 docker_network_iprange=172.22.101.0/24
 
 [docker:vars]
 ansible_connection=local
