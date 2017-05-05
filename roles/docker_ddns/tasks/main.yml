@@ -25,6 +25,7 @@
 - name: Start docker DDNS container
   docker_service:
     project_name: docker_ddns
+    restarted: yes
     definition:
       version: '2'
       services:

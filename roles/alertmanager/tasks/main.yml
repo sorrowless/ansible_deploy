@@ -31,6 +31,7 @@
           command: -config.file=/alertmanager/config.yml -storage.path=/alertmanager/data
           hostname: "alertmanager"
           dns: "{{ mgmt_dns_primary_ip }}"
+          restart: always
       networks:
         default:
           external:

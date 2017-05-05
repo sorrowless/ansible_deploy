@@ -18,8 +18,6 @@
 
 - name: Install collectd into all the nodes
   hosts: all
-  tags:
-    - collectd
   remote_user: root
   vars:
     collectd_interval: 10
@@ -55,7 +53,6 @@
       notify:
         - Restart Collectd
 
-  tasks:
     - name: Configure df Collectd plugin
       template:
         src: roles/collectd/templates/df.conf

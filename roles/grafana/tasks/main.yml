@@ -19,6 +19,7 @@
             - /var/grafana/storage:/var/lib/grafana
           hostname: "grafana"
           dns: "{{ mgmt_dns_primary_ip }}"
+          restart: always
       networks:
         default:
           external:

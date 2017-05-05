@@ -22,6 +22,7 @@
             - /var/graphite/storage:/opt/graphite/storage
           hostname: "graphite"
           dns: "{{ mgmt_dns_primary_ip }}"
+          restart: always
       networks:
         default:
           external:

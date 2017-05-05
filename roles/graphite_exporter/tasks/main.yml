@@ -28,6 +28,7 @@
           command: -graphite.mapping-config=/tmp/graphite_mapping.conf
           hostname: "graphite-exporter"
           dns: "{{ mgmt_dns_primary_ip }}"
+          restart: always
       networks:
         default:
           external:

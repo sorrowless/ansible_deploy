@@ -41,6 +41,7 @@
           command: "-config.file=/prometheus/prometheus.yml -storage.local.retention=336h -alertmanager.url=http://{{ alertmanager_host }}:9093"
           hostname: "prometheus"
           dns: "{{ mgmt_dns_primary_ip }}"
+          restart: always
       networks:
         default:
           external:
