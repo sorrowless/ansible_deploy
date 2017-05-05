@@ -38,6 +38,7 @@
           hostname: "docker-ddns"
           dns: "{{ mgmt_dns_primary_ip }}"
           command: "-v 1.24"
+          restart: always
       networks:
         default:
           external:
