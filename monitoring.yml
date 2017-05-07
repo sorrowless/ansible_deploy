@@ -34,6 +34,7 @@
       - entropy
       - write_graphite
       - df
+      - mysql
     graphite_hosts:
       graphite_host:
         hostname: "graphite.{{ mgmt_dns_domain }}"
@@ -57,5 +58,13 @@
       template:
         src: roles/collectd/templates/df.conf
         dest: /etc/collectd/collectd.conf.d/df.conf
+      notify:
+        - Restart Collectd
+
+    - name: Configure mysql Collectd plugin
+      template:
+        src: roles/collectd/templates/mysql.conf
+        dest: /etc/collectd/collectd.conf.d/mysql.conf
+      when: "'mysqlservers' in group_names"
       notify:
         - Restart Collectd

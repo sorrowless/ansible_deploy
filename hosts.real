@@ -9,3 +9,6 @@ monitor
 
 [monitoring]
 monitor
+
+[mysqlservers]
+monitor
