@@ -12,3 +12,6 @@ monitor
 
 [mysqlservers]
 monitor
+
+[collectd_ping_hosts]
+monitor

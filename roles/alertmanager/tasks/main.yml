@@ -23,8 +23,8 @@
       services:
         prometheus:
           image: "prom/alertmanager"
-          ports:
-            - "9093:9093"
+          expose:
+            - "9093"
           volumes:
             - /etc/docker/alertmanager/config.yml:/alertmanager/config.yml
             - /var/alertmanager/data:/alertmanager/data

@@ -19,10 +19,10 @@
       services:
         graphite-exporter:
           image: "prom/graphite-exporter"
-          ports:
-            - "9108:9108"
-            - "9109:9109"
-            - "9109/udp:9109/udp"
+          expose:
+            - "9108"
+            - "9109"
+            - "9109/udp"
           volumes:
             - /etc/docker/graphite-exporter/graphite_mapping.conf:/tmp/graphite_mapping.conf
           command: -graphite.mapping-config=/tmp/graphite_mapping.conf
