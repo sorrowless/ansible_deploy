@@ -1,23 +1,17 @@
-[local]
-localhost
-
-[local:vars]
-ansible_connection=local
+monitor ansible_host=172.22.200.2 ansible_user=sbog ansible_become=true
+#monitored ansible_host=172.22.200.3 ansible_user=sbog ansible_become=true
 
 [docker]
-localhost docker_network_name=internal.local docker_network_subnet=172.22.101.0/24 docker_network_gateway=172.22.101.1 docker_network_iprange=172.22.101.0/24
-
-[docker:vars]
-ansible_connection=local
+monitor docker_network_name=internal.loc docker_network_subnet=172.22.101.0/24 docker_network_gateway=172.22.101.1 docker_network_iprange=172.22.101.128/25
 
 [dns_server]
-localhost
-
-[dns_server:vars]
-ansible_connection=local
+monitor
 
 [monitoring]
-localhost
+monitor
 
-[monitoring:vars]
-ansible_connection=local
+[mysqlservers]
+monitor
+
+[collectd_ping_hosts]
+monitor
