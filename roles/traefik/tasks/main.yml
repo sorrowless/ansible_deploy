@@ -1,0 +1,22 @@
+---
+- name: Start traefik container
+  docker_service:
+    project_name: traefik
+    definition:
+      version: '2'
+      services:
+				image: traefik
+        command: --web --docker --docker.domain=internal.loc --logLevel=DEBUG
+        ports:
+          - "80:80"
+          - "8080:8080"
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+          - /dev/null:/traefik.toml
+        hostname: "traefik"
+        dns: "{{ mgmt_dns_primary_ip }}"
+        restart: always
+      networks:
+        default:
+          external:
+            name: "{{ docker_network_name }}"
