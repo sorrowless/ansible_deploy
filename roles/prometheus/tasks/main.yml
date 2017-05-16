@@ -42,6 +42,7 @@
           hostname: "prometheus"
           dns: "{{ mgmt_dns_primary_ip }}"
           restart: always
+          labels: "{{ docker_prometheus_labels }}"
       networks:
         default:
           external:

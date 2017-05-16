@@ -21,7 +21,7 @@
     definition:
       version: '2'
       services:
-        prometheus:
+        alertmanager:
           image: "prom/alertmanager"
           expose:
             - "9093"
@@ -32,6 +32,7 @@
           hostname: "alertmanager"
           dns: "{{ mgmt_dns_primary_ip }}"
           restart: always
+          labels: "{{ docker_alertmanager_labels }}"
       networks:
         default:
           external:

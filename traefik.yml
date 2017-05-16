@@ -1,0 +1,7 @@
+---
+- include: docker.yml
+
+- name: Install traefik container to all docker nodes
+  hosts: docker
+  roles:
+    - traefik

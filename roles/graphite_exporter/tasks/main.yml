@@ -29,6 +29,7 @@
           hostname: "graphite-exporter"
           dns: "{{ mgmt_dns_primary_ip }}"
           restart: always
+          labels: "{{ docker_graphite_exporter_labels }}"
       networks:
         default:
           external:
