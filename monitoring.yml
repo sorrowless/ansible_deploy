@@ -57,6 +57,7 @@
       - mysql
       - ping
       - tail
+      - curl
     graphite_hosts:
       graphite_host:
         hostname: "graphite.{{ mgmt_dns_domain }}"
@@ -101,5 +102,12 @@
       template:
         src: roles/collectd/templates/tail.conf
         dest: /etc/collectd/collectd.conf.d/tail.conf
+      notify:
+        - Restart Collectd
+
+    - name: Configure curl Collectd plugin
+      template:
+        src: roles/collectd/templates/curl.conf
+        dest: /etc/collectd/collectd.conf.d/curl.conf
       notify:
         - Restart Collectd
