@@ -1,4 +1,6 @@
 testmonitor ansible_host=172.22.200.2 ansible_user=sbog ansible_become=true
+
+[monitored]
 testmonitored ansible_host=172.22.200.3 ansible_user=sbog ansible_become=true
 
 [docker]
