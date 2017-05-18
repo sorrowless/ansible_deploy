@@ -1,6 +1,5 @@
 ---
 - include: dns.yml
-- include: traefik.yml
 
 - name: |
     Install full-fledged monitoring stack based on Prometheus, Graphite and
