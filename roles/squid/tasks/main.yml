@@ -1,0 +1,19 @@
+---
+- name: Install Squid
+  package:
+    name: squid
+    state: latest
+
+- name: Configure squid.conf
+  template:
+    src: squid.conf
+    dest: "/etc/squid/squid.conf"
+
+- name: Set configuration permissions
+  file:
+    path: /etc/squid
+    mode: u=rwX,g=rX,o=rX
+    owner: root
+    recurse: yes
+  notify:
+    - Restart squid
