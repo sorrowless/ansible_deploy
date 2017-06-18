@@ -1,0 +1,29 @@
+---
+- name: Copy script for external non-HiDPI monitor usage with XPS
+  copy: src=.setup_external_monitor.sh dest=~/.setup_external_monitor.sh
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Install 'v' utility for fast vim recent files open
+  git:
+    repo: https://github.com/rupa/v.git
+    dest: /opt/v
+
+- name: Place a symlink of 'v' to PATH
+  file:
+    src: /opt/v/v
+    dest: /usr/local/bin/v
+    state: link
+
+- name: Install 'tldr' utility as a short version of 'man'
+  git:
+    repo: https://github.com/pepa65/tldr-bash-client.git
+    dest: /opt/tldr-bash-client
+
+- name: Place a symlink of tlkd to PATH
+  file:
+    src: /opt/tldr-bash-client/tldr
+    dest: /usr/local/bin/tldr
+    state: link
+
+

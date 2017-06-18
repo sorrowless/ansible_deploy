@@ -1,6 +1,6 @@
-# Do not export 'vim' as an editor - it will immediately break ^R and so on
-# keybindings.
-#export EDITOR="vim"
+# Cautiously export 'vim' as an editor - it will immediately break ^R and so on
+# keybindings in some cases.
+export EDITOR="vim"
 
 # Use zgen (https://github.com/tarjoilija/zgen.git) to manage plugins for zsh.
 # We try to automatically download it if it doesn't exists and also will auto
