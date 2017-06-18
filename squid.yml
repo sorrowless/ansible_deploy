@@ -2,7 +2,5 @@
 - name: Install Squid on target nodes
   hosts: prx
   remote_user: root
-  vars_files:
-    - vars/squid.yml
   roles:
     - squid

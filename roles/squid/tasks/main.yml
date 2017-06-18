@@ -8,6 +8,8 @@
   template:
     src: squid.conf
     dest: "/etc/squid/squid.conf"
+  notify:
+    - Restart Squid
 
 - name: Set configuration permissions
   file:
