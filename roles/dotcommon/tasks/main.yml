@@ -39,3 +39,9 @@
   package:
     name: ranger
     state: latest
+
+- name: Install parallel utility to run shell tasks in parallel
+  package:
+    name: parallel
+    state: latest
+
