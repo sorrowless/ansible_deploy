@@ -148,6 +148,9 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 bindkey 'ii' vi-cmd-mode
 bindkey ',,' insert-last-word
+bindkey '^[.' insert-last-word
+bindkey '^R' history-incremental-search-backward
+bindkey '<<' history-incremental-search-backward
 
 alias cp='cp -iv'
 alias rcp='rsync -v --progress'

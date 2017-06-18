@@ -20,10 +20,12 @@
     repo: https://github.com/pepa65/tldr-bash-client.git
     dest: /opt/tldr-bash-client
 
-- name: Place a symlink of tlkd to PATH
+- name: Place a symlink of tldr to PATH
   file:
     src: /opt/tldr-bash-client/tldr
     dest: /usr/local/bin/tldr
     state: link
 
-
+- name: Install 'cheat' utility - one more short 'man'
+  pip:
+    name: cheat
