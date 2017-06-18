@@ -29,3 +29,13 @@
 - name: Install 'cheat' utility - one more short 'man'
   pip:
     name: cheat
+
+- name: Install ncdu utility to easier view dir sizes
+  package:
+    name: ncdu
+    state: latest
+
+- name: Install ranger file manager
+  package:
+    name: ranger
+    state: latest

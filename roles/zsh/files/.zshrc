@@ -231,3 +231,14 @@ ssh() {
 
 # M-b and M-f (backward-word and forward-word) would jump over each word separated by a '/'
 export WORDCHARS='*?_[]~=&;!#$%^(){}'
+
+# use 'up' script instead of typing cd ../../../.. endlessly
+UPTOOL="${HOME}/.config/up/up.sh"
+if [ ! -f "${UPTOOL}" ]; then
+  echo "'up' script does not exist, download it"
+  curl --create-dirs -o "${UPTOOL}" https://raw.githubusercontent.com/sorrowless/up/master/up.sh 2>/dev/null
+  chmod u+x "${UPTOOL}"
+  source "${UPTOOL}"
+else
+  source "${UPTOOL}"
+fi
