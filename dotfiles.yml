@@ -15,5 +15,5 @@
     - zsh
     - vim
     - git
-    - screen
+    - tmux
     - dotcommon

@@ -177,6 +177,14 @@ fi
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 
+# Git aliases
+alias gst='git status'
+alias gco='git checkout'
+
+# Translation aliases
+alias enru='trans en:ru -b'
+alias ruen='trans ru:en -b'
+
 PLATFORM=`uname`
 if [ "${PLATFORM}" != "Darwin" ]; then
   alias ls='ls --color=auto --human-readable --group-directories-first --classify'
@@ -241,4 +249,11 @@ if [ ! -f "${UPTOOL}" ]; then
   source "${UPTOOL}"
 else
   source "${UPTOOL}"
+fi
+
+# I always use tmux, so put it here
+TPM="${HOME}/.tmux/plugins/tpm"
+if [ ! -d "${TPM}" ]; then
+  echo "Tmux plugin manager does not loaded, download it"
+  git clone https://github.com/tmux-plugins/tpm "${TPM}"
 fi
