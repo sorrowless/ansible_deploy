@@ -176,6 +176,7 @@ else
 fi
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
+alias clip='fc -e - 2>/dev/null | xsel -i -b'
 
 # Git aliases
 alias gst='git status'
@@ -184,6 +185,10 @@ alias gco='git checkout'
 # Translation aliases
 alias enru='trans en:ru -b'
 alias ruen='trans ru:en -b'
+
+# Docker aliases
+alias dps='sudo docker ps'
+alias dips='sudo docker images'
 
 PLATFORM=`uname`
 if [ "${PLATFORM}" != "Darwin" ]; then
