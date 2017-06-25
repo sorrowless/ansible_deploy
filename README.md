@@ -10,33 +10,32 @@ This repo is organized next way:
 
 ```
 .
-|-- dotfiles.yml
-|-- xapps.yml
-|-- hosts
+|-- group_vars
+|-- host_vars
+|-- inventory
 |-- roles
-|   |-- git
-|   |-- screen
-|   |-- vim
-|   |-- xbindkeys
-|   `-- zsh
 `-- vars
-|   |-- dotfiles_vars.yml
-|   `-- xapps.yml
-`-- README.md
 ```
 
+*group_vars* contains variables which are common for specific group types, like
+~all~ or ~docker~
 
-where *roles* directory contains all the roles which are used in the playbooks,
-*hosts* is an inventory file with hosts list, README.md is the file you are
-reading right now and bunch of *.yml* files are the playbooks to use. Also
-there is *vars* directory with the variables needed to roles. I have to keep
-them encrypted by ansible-vault, but you have not obliged to do this.
+*host_vars* contains variables for hosts, such as user name and hostname and IP
+
+*inventory* lists all the inventory files. As this repo is used for different
+projects but the same roles are used, separate inventory files are needed
+
+*roles* lists all available ansible roles
+
+*vars* contains variables for different OS types or for separate playbooks
+
 
 Main playbooks there are:
 
 * dotfiles.yml - sets the dotfiles I use everyday
 * xapps.yml - sets a configs for X apps
 * monitoring.yml - setup collectd to nodes
+
 
 To apply any of there all you need is just
 
