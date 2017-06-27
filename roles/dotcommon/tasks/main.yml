@@ -45,3 +45,10 @@
     name: parallel
     state: latest
 
+- name: Copy ssh config
+  template:
+    src: sshconfig
+    dest: "~/.ssh/config"
+  become: yes
+  become_user: "{{ username }}"
+
