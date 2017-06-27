@@ -11,6 +11,13 @@
   notify:
     - Restart Squid
 
+- name: Configure .htpasswd for squid
+  template:
+    src: .htpasswd
+    dest: "/etc/squid/.htpasswd"
+  notify:
+    - Restart Squid
+
 - name: Set configuration permissions
   file:
     path: /etc/squid
