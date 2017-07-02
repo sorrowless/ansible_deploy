@@ -190,6 +190,12 @@ alias ruen='trans ru:en -b'
 alias dps='sudo docker ps'
 alias dips='sudo docker images'
 
+# Ansible aliases
+alias avedit='ansible-vault edit'
+alias avdec='ansible-vault decrypt'
+alias avenc='ansible-vault encrypt'
+alias apl='ansible-playbook'
+
 PLATFORM=`uname`
 if [ "${PLATFORM}" != "Darwin" ]; then
   alias ls='ls --color=auto --human-readable --group-directories-first --classify'
