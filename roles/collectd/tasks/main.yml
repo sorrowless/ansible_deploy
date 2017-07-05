@@ -20,6 +20,8 @@
   with_items:
     - python-pip
     - python-dbus
+    - git
+  when: collectd_systemd_services is defined
 
 - name: Install Collectd Systemd plugin
   pip:
