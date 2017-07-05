@@ -7,7 +7,7 @@ testmaster docker_network_name=internal.loc docker_network_subnet=172.22.101.0/2
 [dns_server]
 testmaster
 
-[testmastering]
+[testing]
 testmaster
 
 [db]

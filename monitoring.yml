@@ -111,3 +111,11 @@
         dest: /etc/collectd/collectd.conf.d/curl.conf
       notify:
         - Restart Collectd
+
+    - name: Configure python Collectd plugin
+      template:
+        src: roles/collectd/templates/python_systemd.conf
+        dest: /etc/collectd/collectd.conf.d/python_systemd.conf
+      when: collectd_systemd_services is defined
+      notify:
+        - Restart Collectd

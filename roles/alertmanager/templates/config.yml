@@ -89,3 +89,4 @@ receivers:
   slack_configs:
     - api_url: "{{ slack_api_url }}"
       channel: 'alerts'
+      text: "{% raw %} {{ range .Alerts }}{{ .Annotations.description }} {{ end }}{% endraw %}"

@@ -13,6 +13,20 @@
 - name: Configure Collectd
   template: src=collectd.conf dest=/etc/collectd/collectd.conf
 
+- name: Install python libs
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python-pip
+    - python-dbus
+
+- name: Install Collectd Systemd plugin
+  pip:
+    name: git+https://github.com/mbachry/collectd-systemd.git
+    editable: false
+  when: collectd_systemd_services is defined
+
 - name: Link main Collectd conf file
   file:
     src: /etc/collectd/collectd.conf
