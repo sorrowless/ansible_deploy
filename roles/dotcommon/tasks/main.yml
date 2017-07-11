@@ -52,3 +52,7 @@
   become: yes
   become_user: "{{ username }}"
 
+- name: Install taskwarrior to be a task manager
+  package:
+    name: task
+    state: latest
