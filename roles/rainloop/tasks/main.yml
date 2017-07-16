@@ -1,0 +1,51 @@
+---
+- name: Install packages for RainLoop
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - nginx
+    - php
+    - php-curl
+    - php-xml
+    - unzip
+
+- name: Create needed directories
+  file:
+    path: /var/www/rainloop
+    state: directory
+
+- name: Get latest rainloop app
+  get_url:
+    url: https://www.rainloop.net/repository/webmail/rainloop-community-latest.zip
+    dest: /var/www/rainloop/
+    force: no
+
+- name: Unzip rainloop to directory
+  command: unzip /var/www/rainloop/rainloop-community-latest.zip -d /var/www/rainloop/
+  args:
+    creates: /var/www/rainloop/index.php
+
+- name: Set permissions for rainloop directory
+  file:
+    path: /var/www/rainloop
+    state: directory
+    mode: "u=rwX,g=rX,o=rX"
+    owner: www-data
+    group: www-data
+    recurse: yes
+
+- name: Install nginx template for rainloop
+  template:
+    src: nginx/mail.rainloop.conf
+    dest: /etc/nginx/sites-available/mail.rainloop.conf
+  notify:
+    - Restart Nginx
+
+- name: Create symlink to nginx template
+  file:
+    src: /etc/nginx/sites-available/mail.rainloop.conf
+    dest: /etc/nginx/sites-enabled/mail.rainloop.conf
+    state: link
+  notify:
+    - Restart Nginx

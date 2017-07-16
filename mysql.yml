@@ -1,0 +1,7 @@
+---
+- name: Install MySQL
+  hosts: db
+  remote_user: root
+
+  roles:
+    - mysql

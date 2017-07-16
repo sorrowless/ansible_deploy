@@ -1,0 +1,36 @@
+---
+- name: Install dovecot packages
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - dovecot-core
+    - dovecot-imapd
+    - dovecot-pop3d
+    - dovecot-mysql
+
+- name: Copy configuration files
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: 'dovecot.conf', dest: '/etc/dovecot/dovecot.conf' }
+    - { src: 'dovecot-sql.conf.ext', dest: '/etc/dovecot/dovecot-sql.conf.ext' }
+    - { src: '10-auth.conf', dest: '/etc/dovecot/conf.d/10-auth.conf' }
+    - { src: 'auth-sql.conf.ext', dest: '/etc/dovecot/conf.d/auth-sql.conf.ext' }
+    - { src: '10-mail.conf', dest: '/etc/dovecot/conf.d/10-mail.conf' }
+    - { src: '10-ssl.conf', dest: '/etc/dovecot/conf.d/10-ssl.conf' }
+    - { src: '10-master.conf', dest: '/etc/dovecot/conf.d/10-master.conf' }
+    - { src: '15-lda.conf', dest: '/etc/dovecot/conf.d/15-lda.conf' }
+    - { src: '20-imap.conf', dest: '/etc/dovecot/conf.d/20-imap.conf' }
+    - { src: '90-plugin.conf', dest: '/etc/dovecot/conf.d/90-plugin.conf' }
+  notify:
+    - Restart Dovecot
+
+- name: Set proper mailboxes permissions
+  file:
+    path: /var/mail
+    state: directory
+    recurse: yes
+    owner: root
+    group: mail
