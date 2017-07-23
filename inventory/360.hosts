@@ -8,6 +8,7 @@ impulse
 babylon
 oblako
 tictac
+crosspost
 
 
 [production]
@@ -22,7 +23,7 @@ impulse
 babylon
 oblako
 tictac
-
+crosspost
 
 [docker]
 monitor

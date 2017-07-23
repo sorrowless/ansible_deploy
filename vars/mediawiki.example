@@ -1,0 +1,13 @@
+---
+mediawiki_hostname: wiki.example.ru
+mediawiki_ssl_enabled: true
+mysql_port: 3306
+mysql_bind_address: "127.0.0.1"
+mysql_root_db_pass: mysqlroot
+mysql_users:
+  - name: wikiadmin
+    pass: wikiadminpass
+    priv: "wikidb.*:ALL"
+mysql_db:
+  - name: wikidb
+    replicate: no

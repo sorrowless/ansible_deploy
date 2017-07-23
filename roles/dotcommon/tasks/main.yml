@@ -56,3 +56,9 @@
   package:
     name: task
     state: latest
+
+- name: Install paclog to be able to look at commit messages of updates
+  copy:
+    src: paclog
+    dest: /usr/bin/paclog
+    mode: u=rwx,g=rx,o=rx

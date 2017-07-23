@@ -1,0 +1,54 @@
+---
+- name: Mediawiki | Install packages
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - imagemagick
+    - php7.0-intl
+    - php7.0-curl
+    - php7.0-gd
+    - php7.0-mbstring
+    - php7.0-mysql
+
+- name: Mediawiki | Obtain a mediawiki tarball
+  get_url:
+    url: https://releases.wikimedia.org/mediawiki/1.27/mediawiki-1.27.1.tar.gz
+    dest: /var/www/
+    force: no
+
+- name: Mediawiki | gunzip tarball
+  command: tar zxvf /var/www/mediawiki-1.27.1.tar.gz -C /var/www
+
+- name: Mediawiki | mv target directory
+  command: mv /var/www/mediawiki-1.27.1 /var/www/mediawiki
+  args:
+    creates: /var/www/mediawiki
+
+- name: Mediawiki | Install mysql and create users in it
+  include_role:
+    name: mysql
+
+- name: Mediawiki | Set permissions for www directory
+  file:
+    path: /var/www/mediawiki
+    state: directory
+    mode: "u=rwX,g=rX,o=rX"
+    owner: www-data
+    group: www-data
+    recurse: yes
+
+- name: Mediawiki | Copy nginx configuration
+  template:
+    src: nginx/mediawiki.conf
+    dest: /etc/nginx/sites-available/mediawiki.conf
+  notify:
+    - Restart Nginx
+
+- name: Mediawiki | Enable nginx configuration
+  file:
+    src: /etc/nginx/sites-available/mediawiki.conf
+    dest: /etc/nginx/sites-enabled/mediawiki.conf
+    state: link
+  notify:
+    - Restart Nginx
