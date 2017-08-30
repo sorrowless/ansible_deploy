@@ -146,6 +146,7 @@ function zle-line-init zle-keymap-select {
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
+bindkey -e
 bindkey 'ii' vi-cmd-mode
 bindkey ',,' insert-last-word
 bindkey '^[.' insert-last-word
