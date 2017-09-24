@@ -166,8 +166,9 @@ alias du='du -hc'
 alias df='df -h'
 alias svim='sudo vim'
 alias scat='openssl x509 -text -noout -in'
-alias sc='systemctl'
+alias sctl='systemctl'
 alias sclu='systemctl list-units'
+alias ipsave='sudo iptables-save'
 if command -v colordiff > /dev/null 2>&1; then
     alias diff="colordiff -Nar"
     alias diffy="colordiff -Nar -y --suppress-common-lines"
@@ -189,10 +190,11 @@ alias ruen='trans ru:en -b'
 
 # Docker aliases
 alias dps='sudo docker ps'
+alias dpsa='sudo docker ps --all'
 alias dips='sudo docker images'
 
 # Ansible aliases
-alias avedit='ansible-vault edit'
+alias aved='ansible-vault edit'
 alias avdec='ansible-vault decrypt'
 alias avenc='ansible-vault encrypt'
 alias apl='ansible-playbook'
