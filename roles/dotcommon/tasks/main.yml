@@ -62,3 +62,5 @@
     src: paclog
     dest: /usr/bin/paclog
     mode: u=rwx,g=rx,o=rx
+
+- include: sysctl.yml
