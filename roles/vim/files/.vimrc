@@ -15,6 +15,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'rodjek/vim-puppet'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'jiangmiao/auto-pairs'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
