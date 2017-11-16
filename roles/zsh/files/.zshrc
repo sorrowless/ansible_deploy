@@ -119,11 +119,15 @@ function battshow {
     local ret="$(acpi 2>/dev/null)"
     [ $ret ] || return
     local percent="$(echo $ret | awk '{ print $4}')"
+    local tm="$(echo $ret | awk '{print $5}' | awk -F ":" '{print $1":"$2}')"
     if echo $ret | grep -q "Discharging"
     then
-      echo "%{$fg[white]%}battery%{$reset_color%} ▾$percent%%"
+      echo "%{$fg[gray]%}▾$percent%%/$tm%{$reset_color%}"
+    elif echo $ret | grep -q "Full"
+    then
+      echo "%{$fg[gray]%}▴$percent%% %{$reset_color%}"
     else
-      echo "%{$fg[white]%}battery%{$reset_color%} ▴$percent%%"
+      echo "%{$fg[gray]%}▴$percent%%/$tm%{$reset_color%}"
     fi
 }
 

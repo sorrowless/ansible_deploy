@@ -63,4 +63,9 @@
     dest: /usr/bin/paclog
     mode: u=rwx,g=rx,o=rx
 
+- name: Install acpi to be able to show battery in console
+  package:
+    name: acpi
+    state: latest
+
 - include: sysctl.yml
