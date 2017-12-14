@@ -230,7 +230,7 @@ fi
 #unset GREP_OPTIONS
 
 # set 256 colors for terminal
-export TERM=tmux-256color
+export TERM=screen-256color
 
 # SSH-related funcs
 check-ssh-agent() {
