@@ -12,7 +12,12 @@
   co = checkout
   st = status
   ru = remote update
+  a = !git add . && git commit
   puff = pull --ff-only
+  puffom = pull --ff-only origin master
+  puffum = pull --ff-only upstream master
+  pushom = push origin master
+  pushum = push upstream master
   pr = "!f() { git fetch $1 pull/$2/head:pull_$2; git co pull_$2; }; f"
 [merge]
   conflictstyle = diff3
