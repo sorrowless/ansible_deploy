@@ -68,4 +68,9 @@
     name: acpi
     state: latest
 
+- name: Install FZF to have fuzzy search in console with preview
+  package:
+    name: fzf
+    state: latest
+
 - include: sysctl.yml
