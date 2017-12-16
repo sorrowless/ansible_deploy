@@ -204,6 +204,20 @@ alias avdec='ansible-vault decrypt'
 alias avenc='ansible-vault encrypt'
 alias apl='ansible-playbook'
 
+# Fzf aliases
+fkill() {
+  local pid
+  pid=$(ps -ef | sed 1d | /usr/bin/fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+  fi
+}
+alias fzf='fzf --height 70% --border --preview "head -100 {}"'
+alias vif='vim $(fzf)'
+alias open='xdg-open "$(fzf)" 2>/dev/null'
+
 PLATFORM=`uname`
 if [ "${PLATFORM}" != "Darwin" ]; then
   alias ls='ls --color=auto --human-readable --group-directories-first --classify'
