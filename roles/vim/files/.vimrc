@@ -139,19 +139,15 @@ autocmd BufWrite *.pp :call DeleteTrailingWS()
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
-" Toggle relative and absolute numbers by C-n
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
-
-"nnoremap <C-n> :call NumberToggle()<cr>
-
-" Set relative number lines
-set relativenumber
+" That's amazin feature to enable BOTH number and relativenumber. Also it
+" automagically set relative to absolute when lost focus to other tab. Got
+" this from https://jeffkreeftmeijer.com/vim-number/
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 " Remember cursor position
 augroup resCur
