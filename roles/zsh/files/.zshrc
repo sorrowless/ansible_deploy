@@ -114,38 +114,21 @@ function happy_sad {
     echo "%(?.%{$fg[green]%}^_^%{$reset_color%}.%{$fg[red]%}o_O%{$reset_color%})"
 }
 
-function battshow {
-    # shows how many battery remains in percentage
-    local ret="$(acpi 2>/dev/null)"
-    [ $ret ] || return
-    local percent="$(echo $ret | awk '{ print $4}')"
-    local tm="$(echo $ret | awk '{print $5}' | awk -F ":" '{print $1":"$2}')"
-    if echo $ret | grep -q "Discharging"
-    then
-      echo "%{$fg[gray]%}▾$percent%%/$tm%{$reset_color%}"
-    elif echo $ret | grep -q "Full"
-    then
-      echo "%{$fg[gray]%}▴$percent%% %{$reset_color%}"
-    else
-      echo "%{$fg[gray]%}▴$percent%%/$tm%{$reset_color%}"
-    fi
-}
-
 function gitbranch {
     # find current git branch
     local ret="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
     # and test that it is not null. If not null - then print it.
-    [ $ret ] && echo "%{$fg[white]%}on git branch%{$reset_color%} [%{$fg[red]%}$ret%{$reset_color%}]%{$fg[white]%},%{$reset_color%}"
+    [ $ret ] && echo "%{$fg[white]%}on git branch%{$reset_color%} [%{$fg[red]%}$ret%{$reset_color%}]"
 }
 
 # it MUST be in singlequotes. Otherwise, promptsubst will not be working
 PROMPT='
-$(who_am_i) %{$fg[white]%}in%{$reset_color%} %{$fg_no_bold[cyan]%}%d%{$reset_color%}
+$(who_am_i) %{$fg[white]%}in%{$reset_color%} %{$fg_no_bold[cyan]%}%d%{$reset_color%} $(gitbranch)
 $(happy_sad) -> '
 # set right prompt side
 function zle-line-init zle-keymap-select {
     VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
-    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|)/} $(gitbranch) $(battshow)"
+    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|)/}"
     zle reset-prompt
 }
 zle -N zle-line-init

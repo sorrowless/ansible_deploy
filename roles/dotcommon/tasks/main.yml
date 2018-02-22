@@ -74,3 +74,9 @@
     state: latest
 
 - include: sysctl.yml
+
+- name: Install battshow to be able to view battery status in console
+  copy:
+    src: battshow
+    dest: /usr/bin/battshow
+    mode: u=rwx,g=rx,o=rx
