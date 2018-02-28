@@ -139,6 +139,9 @@ bindkey ',,' insert-last-word
 bindkey '^[.' insert-last-word
 bindkey '^R' history-incremental-search-backward
 bindkey '<<' history-incremental-search-backward
+bindkey '^H' backward-kill-word
+bindkey '^b' backward-word
+bindkey '^f' forward-word
 
 alias cp='cp -iv'
 alias rcp='rsync -v --progress'
