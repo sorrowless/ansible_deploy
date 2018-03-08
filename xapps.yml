@@ -1,9 +1,9 @@
 ---
 - name: Install needed X applications everywhere
-  hosts: local
+  hosts: all
   remote_user: root
   vars_files:
-    - vars/xapps_vars.yml
+    - vars/xapps.yml
 
   pre_tasks:
     - name: Create user {{ username }} if does not exists
@@ -11,5 +11,10 @@
         group: "{{ username }}"
         name: "{{ username }}"
 
-  roles:
-    - xbindkeys
+  tasks:
+    - name: Install needed packages
+      package:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - pycharm-community-edition
