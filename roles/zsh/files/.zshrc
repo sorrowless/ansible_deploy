@@ -114,6 +114,11 @@ function happy_sad {
     echo "%(?.%{$fg[green]%}^_^%{$reset_color%}.%{$fg[red]%}o_O%{$reset_color%})"
 }
 
+function red_green {
+    # The same as for happy_sad but for '>' prompt
+    echo "%(?.%{$fg[green]%}>%{$reset_color%}.%{$fg[red]%}>%{$reset_color%})"
+}
+
 function gitbranch {
     # find current git branch
     local ret="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
@@ -123,8 +128,8 @@ function gitbranch {
 
 # it MUST be in singlequotes. Otherwise, promptsubst will not be working
 PROMPT='
-$(who_am_i) %{$fg[white]%}in%{$reset_color%} %{$fg_no_bold[cyan]%}%d%{$reset_color%} $(gitbranch)
-$(happy_sad) -> '
+$(who_am_i) %{$fg[white]%}in%{$reset_color%} %{$fg_no_bold[cyan]%}%d%{$reset_color%} $(gitbranch) $(happy_sad)
+$(red_green) '
 # set right prompt side
 function zle-line-init zle-keymap-select {
     VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
