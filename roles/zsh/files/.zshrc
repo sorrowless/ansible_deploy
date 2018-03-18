@@ -123,12 +123,12 @@ function gitbranch {
     # find current git branch
     local ret="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
     # and test that it is not null. If not null - then print it.
-    [ $ret ] && echo "%{$fg[white]%}on git branch%{$reset_color%} [%{$fg[red]%}$ret%{$reset_color%}]"
+    [ $ret ] && echo "%{$reset_color%}[%{$fg[red]%}$ret%{$reset_color%}]"
 }
 
 # it MUST be in singlequotes. Otherwise, promptsubst will not be working
 PROMPT='
-$(who_am_i) %{$fg[white]%}in%{$reset_color%} %{$fg_no_bold[cyan]%}%d%{$reset_color%} $(gitbranch) $(happy_sad)
+$(who_am_i) %{$fg[white]%}in%{$reset_color%} %{$fg_no_bold[cyan]%}%d%{$reset_color%} $(gitbranch)
 $(red_green) '
 # set right prompt side
 function zle-line-init zle-keymap-select {

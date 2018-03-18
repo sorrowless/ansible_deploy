@@ -12,7 +12,7 @@
         name: "{{ username }}"
 
   roles:
-    - zsh
+    - { role: zsh, tags: ['shell'] }
     - vim
     - git
     - tmux
