@@ -18,3 +18,4 @@
     - tmux
     - dotcommon
     - rofi
+    - { role: backup, tags: ['backup'] }
