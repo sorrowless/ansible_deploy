@@ -50,9 +50,8 @@ if [ -f ${TARGET_FILE} ]; then
     move_and_encrypt
     data_rclone
   else
-    # Otherwise just exit
+    # Otherwise just continue
     echo "Source was not changed from last backup, so no actions needed"
-    exit 0
   fi
 else
   # If old archive not found, just move new one to target place and encrypt it.
@@ -64,4 +63,4 @@ fi
 # Additionally copy Keepass database to the google drive. Stop blaming me, it's
 # my personal backup script, I don't use it for anything but for backup my
 # personal files.
-/usr/bin/rclone copy /home/{{ username }}/Documents/private_db_new.kdbx gdrive:backups/
+/usr/bin/rclone copy /home/sbog/Documents/private_db_new.kdbx gdrive:backups/
