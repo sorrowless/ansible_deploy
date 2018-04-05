@@ -281,3 +281,8 @@ if [ ! -d "${TPM}" ]; then
   echo "Tmux plugin manager does not loaded, download it"
   git clone https://github.com/tmux-plugins/tpm "${TPM}"
 fi
+
+# To avoid getting this rc file bigger, just get settings from other files
+for FILE in ~/.rc/* ; do
+  source $FILE
+done

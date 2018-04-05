@@ -16,6 +16,6 @@
     - vim
     - git
     - tmux
-    - dotcommon
+    - { role: dotcommon, tags: ['dotcommon'] }
     - rofi
     - { role: backup, tags: ['backup'] }
