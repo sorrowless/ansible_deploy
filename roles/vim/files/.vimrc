@@ -10,12 +10,14 @@ call vundle#begin()
 " " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'kien/ctrlp.vim'
+Plugin 'junegunn/fzf'
+Plugin 'pbogut/fzf-mru.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'scrooloose/syntastic'
 Plugin 'rodjek/vim-puppet'
 Plugin 'davidhalter/jedi-vim'
-Plugin 'jiangmiao/auto-pairs'
+Plugin 'christoomey/vim-system-copy'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -23,26 +25,24 @@ filetype plugin indent on    " required
 " NerdTree plugin settings
 map <C-n> :NERDTreeToggle<CR>
 
+" NerdTree syntax highlight
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+
 " syntastic plugin settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 let g:syntastic_puppet_checkers = [ 'puppet', 'puppetlint' ]
+let g:syntastic_python_checkers = ['flake8']
 
-" ctrlp plugin settings
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .svn
-      \ --ignore .hg
-      \ --ignore .DS_Store
-      \ --ignore "**/*.pyc"
-      \ -g ""'
+" fzf plugin settings
+map <C-p> :FZF<cr>
 
 " jedi-vim plugin settings
 let g:jedi#use_tabs_not_buffers = 1  " allow use tabs for goto jumps
