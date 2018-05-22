@@ -15,12 +15,17 @@ Plugin 'pbogut/fzf-mru.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'scrooloose/syntastic'
-Plugin 'rodjek/vim-puppet'
-Plugin 'davidhalter/jedi-vim'
 Plugin 'christoomey/vim-system-copy'
+Plugin 'Yggdroot/indentLine'
+Plugin 'tpope/vim-fugitive'
+Plugin 'junegunn/gv.vim'
+Plugin 'roxma/vim-paste-easy'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" IndentLine plugin settings
+let g:indentLine_char = '▏'
 
 " NerdTree plugin settings
 map <C-n> :NERDTreeToggle<CR>
@@ -36,9 +41,8 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
-let g:syntastic_puppet_checkers = [ 'puppet', 'puppetlint' ]
 let g:syntastic_python_checkers = ['flake8']
 
 " fzf plugin settings
@@ -170,7 +174,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " highlight symbols after 80
 set t_Co=256
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+highlight OverLength ctermbg=239 ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
 " add line that show you 80 chars border
@@ -211,3 +216,9 @@ nmap 6 6gt
 nmap 7 7gt
 nmap 8 8gt
 nmap 9 9gt
+
+" Show EOL chars
+set list
+"set listchars=eol:↵
+set listchars=eol:¬
+highlight NonText ctermfg=236

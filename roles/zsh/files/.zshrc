@@ -73,7 +73,7 @@ else
 fi
 
 # History options
-export HISTSIZE=2000
+export HISTSIZE=10000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
 setopt inc_append_history
@@ -179,6 +179,7 @@ alias speedtest="curl -s -w 'Testing Website Response Time for: %{url_effective}
 # Git aliases
 alias gst='git status'
 alias gco='git checkout'
+alias grv='git remote -v'
 
 # Translation aliases
 alias enru='trans en:ru -b'
