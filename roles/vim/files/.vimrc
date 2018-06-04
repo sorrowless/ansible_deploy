@@ -153,6 +153,9 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
+" Show current cursor position
+set cursorline
+
 " Remember cursor position
 augroup resCur
   autocmd!
@@ -221,4 +224,5 @@ nmap 9 9gt
 set list
 "set listchars=eol:↵
 set listchars=eol:¬
+" highlight eol char
 highlight NonText ctermfg=236
