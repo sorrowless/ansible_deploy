@@ -1,6 +1,0 @@
----
-- name: Install Squid on target nodes
-  hosts: prx
-  remote_user: root
-  roles:
-    - squid
